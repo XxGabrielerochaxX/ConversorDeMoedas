@@ -1,0 +1,57 @@
+.pagina-inicial {
+    background-image: url('https://www.google.com.br/imgres?imgurl=https%3A%2F%2Fimages.ecycle.com.br%2Fwp-content%2Fuploads%2F2021%2F10%2F07121825%2Fdrop-of-water-gee46e2eb0_1920.jpg.webp&tbnid=rYG92hSeAWkErM&vet=12ahUKEwie5ej9iZWCAxXAUbgEHThrDY8QMygAegQIARBv..i&imgrefurl=https%3A%2F%2Fwww.ecycle.com.br%2Fagua%2F&docid=pLxpmu9ZKWEKHM&w=1920&h=1280&q=agua%5D&hl=pt-BR&ved=2ahUKEwie5ej9iZWCAxXAUbgEHThrDY8QMygAegQIARBv'); /* Substitua pelo caminho da sua imagem de fundo */
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .conteudo {
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .pagina-inicial {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .image-container {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    max-width: 100%; /* Adicione esta linha para garantir que a imagem não fique maior do que o contêiner */
+  }
+  
+  .image-overlay {
+    position: relative;
+  }
+  
+  img {
+    max-width: 100%; /* Adicione esta linha para garantir que a imagem não fique maior do que o contêiner */
+  }
+
+  
+
+  .image-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 2vw; /* Use vw para o padding para que ele se ajuste ao tamanho da janela */
+    width: 70%; /* Use % para a largura para que ela se ajuste ao tamanho da janela */
+    max-width: 100vw; /* Use vw para o máximo da largura para evitar que o texto fique muito largo */
+    height: 90vh; /* Use vh para a altura para que ela se ajuste ao tamanho da janela */
+    font-size: 6vh; /* Use vh para o tamanho da fonte para que ele se ajuste ao tamanho da janela */
+    line-height: 1.4; /* Aumente o espaçamento entre as linhas de texto */
+  }
+  

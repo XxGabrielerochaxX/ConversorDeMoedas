@@ -9,6 +9,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { TopoComponent } from './topo/topo.component';
 import { RodapeComponent } from './rodape/rodape.component';
 import { InicioComponent } from './inicio/inicio.component';
+import { MatCardModule } from '@angular/material/card';
 
 
 
@@ -30,7 +31,8 @@ import { InicioComponent } from './inicio/inicio.component';
     AppRoutingModule,
     BrowserAnimationsModule,
    MatButtonModule,
-   MatMenuModule
+   MatMenuModule,
+   MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
