@@ -1,26 +1,21 @@
-<br>
-<div class="converter-card">
-    <h1>Conversor de Moeda</h1>
-    <div class="input-group">
-        <select id="fromCurrency">
-            <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
-            <option value="GBP">GBP</option>
-            <!-- Adicione mais opções de moeda conforme necessário -->
-        </select>
-        <span class="currency-divider"></span>
-        <select id="toCurrency">
-            <option value="USD">USD</option>
-            <option value="EUR">EUR</option>
-            <option value="GBP">GBP</option>
-            <!-- Adicione mais opções de moeda conforme necessário -->
-        </select>
+<div class="card">
+    <div class="card-header">
+        <br>
+      <h1>Conversor de Moedas</h1>
     </div>
-    <input type="number" id="amount" placeholder="Quantidade" />
-    <button id="convertButton">Converter</button>
-    <p class="result" id="result">Resultado: </p>
-    <br>
-    <br>
-    <p class="conversion-rate">Taxa de Conversão: <span id="conversionRate">1.2</span></p>
-</div>
-<br>
+    <div class="card-body">
+      <label for="amount">Valor:</label>
+      <input type="number" id="amount" [(ngModel)]="amount">
+      <label for="fromCurrency">Moeda de Origem:</label>
+      <select id="fromCurrency" [(ngModel)]="fromCurrency">
+        <option *ngFor="let currency of currencies" [value]="currency">{{ currency }}</option>
+      </select>
+      <label for="toCurrency">Moeda de Destino:</label>
+      <select id="toCurrency" [(ngModel)]="toCurrency">
+        <option *ngFor="let currency of currencies" [value]="currency">{{ currency }}</option>
+      </select>
+      <button (click)="convertCurrency()">Converter</button>
+      <p *ngIf="result">Resultado: {{ result }}</p>
+    </div>
+  </div>
+  

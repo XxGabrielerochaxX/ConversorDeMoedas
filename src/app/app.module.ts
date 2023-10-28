@@ -19,6 +19,8 @@ import { MatInputModule } from '@angular/material/input';
 import { InformacoesComponent } from './informacoes/informacoes.component';
 import { ConversorComponent } from './conversor/conversor.component';
 import { HistoricoComponent } from './historico/historico.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -51,6 +53,8 @@ import { HistoricoComponent } from './historico/historico.component';
    MatFormFieldModule,
    MatSortModule,
    MatInputModule,
+   HttpClientModule,
+   FormsModule
 
   
 
