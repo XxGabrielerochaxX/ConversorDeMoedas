@@ -16,6 +16,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
+import { InformacoesComponent } from './informacoes/informacoes.component';
 
 
 
@@ -29,7 +30,8 @@ import { MatInputModule } from '@angular/material/input';
     TopoComponent,
     RodapeComponent,
     InicioComponent,
-    TabelaComponent
+    TabelaComponent,
+    InformacoesComponent
 
 
   ],
