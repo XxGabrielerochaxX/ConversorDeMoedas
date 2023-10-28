@@ -32,14 +32,27 @@ export class ConversorComponent {
     'XDR', 'XOF', 'XPF', 'YER', 'ZAR', 'ZMW', 'ZWL'
   ];
   result: number = 0;
+  exchangeRates: { [key: string]: number } = {};
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.fetchExchangeRates();
+  }
 
-  convertCurrency() {
+  fetchExchangeRates() {
     const apiUrl = `https://v6.exchangerate-api.com/v6/93939b9b42da7a97609a2fc6/latest/${this.fromCurrency}`;
     this.http.get<ExchangeData>(apiUrl).subscribe(data => {
-      const exchangeRates = data.conversion_rates;
-      this.result = this.amount * exchangeRates[this.toCurrency];
+      this.exchangeRates = data.conversion_rates;
+      this.convertCurrency(); 
     });
+  }
+
+  convertCurrency() {
+    if (this.fromCurrency !== this.toCurrency) {
+      const baseRate = this.exchangeRates[this.fromCurrency];
+      const targetRate = this.exchangeRates[this.toCurrency];
+      this.result = (this.amount / baseRate) * targetRate;
+    } else {
+      this.result = this.amount; 
+    }
   }
 }

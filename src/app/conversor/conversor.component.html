@@ -1,6 +1,5 @@
 <div class="card">
     <div class="card-header">
-        <br>
       <h1>Conversor de Moedas</h1>
     </div>
     <div class="card-body">
@@ -16,6 +15,7 @@
       </select>
       <button (click)="convertCurrency()">Converter</button>
       <p *ngIf="result">Resultado: {{ result }}</p>
+      <p *ngIf="result && exchangeRates[toCurrency]">Taxa de Conversão: {{ exchangeRates[toCurrency] }}</p>
     </div>
   </div>
   
