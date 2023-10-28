@@ -1,21 +1,33 @@
-<div class="card">
-    <div class="card-header">
-      <h1>Conversor de Moedas</h1>
-    </div>
-    <div class="card-body">
-      <label for="amount">Valor:</label>
-      <input type="number" id="amount" [(ngModel)]="amount">
-      <label for="fromCurrency">Moeda de Origem:</label>
-      <select id="fromCurrency" [(ngModel)]="fromCurrency">
-        <option *ngFor="let currency of currencies" [value]="currency">{{ currency }}</option>
-      </select>
-      <label for="toCurrency">Moeda de Destino:</label>
-      <select id="toCurrency" [(ngModel)]="toCurrency">
-        <option *ngFor="let currency of currencies" [value]="currency">{{ currency }}</option>
-      </select>
-      <button (click)="convertCurrency()">Converter</button>
-      <p *ngIf="result">Resultado: {{ result }}</p>
-      <p *ngIf="result && exchangeRates[toCurrency]">Taxa de Conversão: {{ exchangeRates[toCurrency] }}</p>
-    </div>
+<div class="conversor-container">
+  <h1>Conversor de Moedas</h1>
+  <label for="amount">Valor:</label>
+  <input class="conversor-input" type="number" id="amount" [(ngModel)]="amount">
+  <label for="fromCurrency">Moeda de Origem:</label>
+  <select class="conversor-input" id="fromCurrency" [(ngModel)]="fromCurrency">
+    <option *ngFor="let currency of currencies" [value]="currency">{{ currency }}</option>
+  </select>
+  <label for="toCurrency">Moeda de Destino:</label>
+  <select class="conversor-input" id="toCurrency" [(ngModel)]="toCurrency">
+    <option *ngFor="let currency of currencies" [value]="currency">{{ currency }}</option>
+  </select>
+  <br>
+  <button class="conversor-button" (click)="convertCurrency()">Converter</button>
+  <div class="conversor-result">
+    <br>
+    Resultado: {{ result }}
   </div>
-  
+ <br>
+  <p>Taxa de Conversão: {{ exchangeRates[fromCurrency] }} para {{ exchangeRates[toCurrency] }}</p>
+</div>
+<div class="conversion-history">
+  <h2>Histórico de Conversões</h2>
+  <div class="conversion-record" *ngFor="let record of conversionHistory; let i = index">
+    <p>Data: {{ record.date }}</p>
+    <p>Moeda de Origem: {{ record.fromCurrency }}</p>
+    <p>Moeda de Destino: {{ record.toCurrency }}</p>
+    <p>Valor Convertido: {{ record.result }}</p>
+    <p>Valor de Entrada: {{ record.input }}</p>
+    <button class="delete-button" (click)="deleteConversion(i)">Excluir</button>
+  </div>
+</div>
+

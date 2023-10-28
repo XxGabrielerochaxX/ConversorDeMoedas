@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { DatePipe } from '@angular/common';
 
 interface ExchangeData {
   conversion_rates: {
@@ -10,7 +11,8 @@ interface ExchangeData {
 @Component({
   selector: 'app-conversor',
   templateUrl: './conversor.component.html',
-  styleUrls: ['./conversor.component.css']
+  styleUrls: ['./conversor.component.css'],
+  providers: [DatePipe],
 })
 export class ConversorComponent {
   amount: number = 0;
@@ -29,12 +31,17 @@ export class ConversorComponent {
     'RON', 'RSD', 'RUB', 'RWF', 'SAR', 'SBD', 'SCR', 'SDG', 'SEK', 'SGD', 'SHP', 'SLE', 'SLL',
     'SOS', 'SRD', 'SSP', 'STN', 'SYP', 'SZL', 'THB', 'TJS', 'TMT', 'TND', 'TOP', 'TRY', 'TTD',
     'TVD', 'TWD', 'TZS', 'UAH', 'UGX', 'UYU', 'UZS', 'VES', 'VND', 'VUV', 'WST', 'XAF', 'XCD',
-    'XDR', 'XOF', 'XPF', 'YER', 'ZAR', 'ZMW', 'ZWL'
+    'XDR', 'XOF', 'XPF', 'YER', 'ZAR', 'ZMW', 'ZWL',
+    
   ];
+
   result: number = 0;
   exchangeRates: { [key: string]: number } = {};
+  conversionHistory: ConversionRecord[] = [];
+  isFirstLoad: boolean = true; 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private datePipe: DatePipe) {
+    this.loadConversionHistory();
     this.fetchExchangeRates();
   }
 
@@ -42,7 +49,7 @@ export class ConversorComponent {
     const apiUrl = `https://v6.exchangerate-api.com/v6/93939b9b42da7a97609a2fc6/latest/${this.fromCurrency}`;
     this.http.get<ExchangeData>(apiUrl).subscribe(data => {
       this.exchangeRates = data.conversion_rates;
-      this.convertCurrency(); 
+      this.convertCurrency();
     });
   }
 
@@ -50,9 +57,51 @@ export class ConversorComponent {
     if (this.fromCurrency !== this.toCurrency) {
       const baseRate = this.exchangeRates[this.fromCurrency];
       const targetRate = this.exchangeRates[this.toCurrency];
-      this.result = (this.amount / baseRate) * targetRate;
+      this.result = +(this.amount / baseRate * targetRate).toFixed(2); 
+      this.saveConversion();
     } else {
-      this.result = this.amount; 
+      this.result = +(this.amount).toFixed(2); 
     }
   }
+
+  saveConversion() {
+    
+    if (!this.isFirstLoad) {
+      const date = this.datePipe.transform(new Date(), 'dd/MM/yyyy HH:mm:ss') || '';
+      const conversion: ConversionRecord = {
+        date: date,
+        fromCurrency: this.fromCurrency,
+        toCurrency: this.toCurrency,
+        amount: this.amount,
+        result: this.result,
+        input: this.amount,
+      };
+
+      this.conversionHistory.unshift(conversion);
+      localStorage.setItem('conversionHistory', JSON.stringify(this.conversionHistory));
+    } else {
+      this.isFirstLoad = false;
+    }
+  }
+
+  loadConversionHistory() {
+    const storedHistory = localStorage.getItem('conversionHistory');
+    if (storedHistory) {
+      this.conversionHistory = JSON.parse(storedHistory);
+    }
+  }
+
+  deleteConversion(index: number) {
+    this.conversionHistory.splice(index, 1);
+    localStorage.setItem('conversionHistory', JSON.stringify(this.conversionHistory));
+  }
+}
+
+interface ConversionRecord {
+  date: string;
+  fromCurrency: string;
+  toCurrency: string;
+  amount: number;
+  result: number;
+  input: number;
 }

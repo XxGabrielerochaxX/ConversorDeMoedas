@@ -365,7 +365,6 @@ const NAMES: string[] = [
   'Dólar do Zimbábue',
 ];
 
-// O resto do código permanece inalterado
 
 
 export interface UserData {
