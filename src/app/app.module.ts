@@ -17,6 +17,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSortModule } from '@angular/material/sort';
 import { MatInputModule } from '@angular/material/input';
 import { InformacoesComponent } from './informacoes/informacoes.component';
+import { ConversorComponent } from './conversor/conversor.component';
+import { HistoricoComponent } from './historico/historico.component';
 
 
 
@@ -31,7 +33,9 @@ import { InformacoesComponent } from './informacoes/informacoes.component';
     RodapeComponent,
     InicioComponent,
     TabelaComponent,
-    InformacoesComponent
+    InformacoesComponent,
+    ConversorComponent,
+    HistoricoComponent
 
 
   ],
