@@ -10,6 +10,12 @@ import { TopoComponent } from './topo/topo.component';
 import { RodapeComponent } from './rodape/rodape.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { MatCardModule } from '@angular/material/card';
+import { TabelaComponent } from './tabela/tabela.component';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSortModule } from '@angular/material/sort';
+import { MatInputModule } from '@angular/material/input';
 
 
 
@@ -22,7 +28,8 @@ import { MatCardModule } from '@angular/material/card';
     AppComponent,
     TopoComponent,
     RodapeComponent,
-    InicioComponent
+    InicioComponent,
+    TabelaComponent
 
 
   ],
@@ -32,7 +39,18 @@ import { MatCardModule } from '@angular/material/card';
     BrowserAnimationsModule,
    MatButtonModule,
    MatMenuModule,
-   MatCardModule
+   MatCardModule,
+   MatTableModule,
+   MatPaginatorModule,
+   MatFormFieldModule,
+   MatSortModule,
+   MatInputModule,
+
+  
+
+
+
+   
   ],
   providers: [],
   bootstrap: [AppComponent]
